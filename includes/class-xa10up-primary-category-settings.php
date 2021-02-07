@@ -108,7 +108,7 @@ class XA10up_Primary_Category_Settings {
 		// Register section.
 		add_settings_section(
 			'xa10up_section_primary_category',
-			__( 'Primary Category', 'xa10up' ),
+			__( 'Manage Primary Taxonomies', 'xa10up' ),
 			array(
 				'XA10up_Primary_Category_Settings',
 				'template_section_description',
@@ -155,7 +155,7 @@ class XA10up_Primary_Category_Settings {
 	public function add_settings_menu() {
 
 		add_menu_page(
-			'xa10up',
+			'Primary Taxonomies',
 			'Primary Taxonomies',
 			'manage_options',
 			'xa10up-settings',
