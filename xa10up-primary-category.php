@@ -8,20 +8,21 @@
  * registers the activation and deactivation functions, and defines a function
  * that starts the plugin.
  *
- * @link              http://example.com
+ * @link              https://github.com/tikifez/xa10up-primary-category
  * @since             1.0.0
  * @package           XA10up_Primary_Category
  *
  * @wordpress-plugin
- * Plugin Name:       WordPress Plugin Boilerplate
- * Plugin URI:        http://example.com/plugin-name-uri/
- * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
+ * Plugin Name:       XA10up Primary Category Code Test
+ * Plugin URI:        https://github.com/tikifez/xa10up-primary-category
+ * Description:       Allows a category or taxonomy to be set as the primary and includes the taxonomy in search
+ * results.
  * Version:           1.0.0
- * Author:            Your Name or Your Company
+ * Author:            Xristopher Anderton
  * Author URI:        http://ink.fish
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       plugin-name
+ * Text Domain:       xa10up
  * Domain Path:       /languages
  */
 
@@ -39,19 +40,19 @@ define( 'PLUGIN_NAME_VERSION', '1.0.0' );
 
 /**
  * The code that runs during plugin activation.
- * This action is documented in includes/class-plugin-name-activator.php
+ * This action is documented in includes/class-xa10up-primary-category-activator.php
  */
 function activate_plugin_name() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-plugin-name-activator.php';
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-xa10up-primary-category-activator.php';
 	XA10up_Primary_Category_Activator::activate();
 }
 
 /**
  * The code that runs during plugin deactivation.
- * This action is documented in includes/class-plugin-name-deactivator.php
+ * This action is documented in includes/class-xa10up-primary-category-deactivator.php
  */
 function deactivate_plugin_name() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-plugin-name-deactivator.php';
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-xa10up-primary-category-deactivator.php';
 	XA10up_Primary_Category_Deactivator::deactivate();
 }
 
@@ -79,4 +80,5 @@ function run_plugin_name() {
 	$plugin->run();
 
 }
+
 run_plugin_name();

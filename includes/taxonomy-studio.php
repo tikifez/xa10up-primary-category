@@ -27,10 +27,3 @@ function xa10up_register_taxonomy_studio() {
 	);
 	register_taxonomy( 'studio', array( 'review' ), $args );
 }
-
-/**
- * Register xa10up_register_taxonomy_studio to the admin_init action hook.
- *
- * @since 1.0.0
- */
-add_action( 'init', 'xa10up_register_taxonomy_studio' );

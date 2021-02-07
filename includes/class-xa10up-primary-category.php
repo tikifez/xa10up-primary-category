@@ -1,14 +1,9 @@
 <?php
-require_once plugin_dir_path( __FILE__ ) . '/includes/post-type-review.php';
-require_once plugin_dir_path( __FILE__ ) . '/includes/taxonomy-genre.php';
-require_once plugin_dir_path( __FILE__ ) . '/includes/taxonomy-studio.php';
-require_once plugin_dir_path( __FILE__ ) . '/includes/class-xa10up-primary-category-settings.php';
-
 /**
  * The file that defines the core plugin class
  *
- * A class definition that includes attributes and functions used across both the
- * public-facing side of the site and the admin area.
+ * A class definition that includes attributes and functions used across both
+ * the public-facing side of the site and the admin area.
  *
  * @link       http://example.com
  * @since      1.0.0
@@ -34,12 +29,13 @@ require_once plugin_dir_path( __FILE__ ) . '/includes/class-xa10up-primary-categ
 class XA10up_Primary_Category {
 
 	/**
-	 * The loader that's responsible for maintaining and registering all hooks that power
-	 * the plugin.
+	 * The loader that's responsible for maintaining and registering all hooks
+	 * that power the plugin.
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      XA10up_Primary_Category_Loader $loader Maintains and registers all hooks for the plugin.
+	 * @var      XA10up_Primary_Category_Loader $loader Maintains and registers
+	 *           all hooks for the plugin.
 	 */
 	protected $loader;
 
@@ -48,7 +44,8 @@ class XA10up_Primary_Category {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      string $plugin_name The string used to uniquely identify this plugin.
+	 * @var      string $plugin_name The string used to uniquely identify this
+	 *           plugin.
 	 */
 	protected $plugin_name;
 
@@ -64,9 +61,9 @@ class XA10up_Primary_Category {
 	/**
 	 * Define the core functionality of the plugin.
 	 *
-	 * Set the plugin name and the plugin version that can be used throughout the plugin.
-	 * Load the dependencies, define the locale, and set the hooks for the admin area and
-	 * the public-facing side of the site.
+	 * Set the plugin name and the plugin version that can be used throughout
+	 * the plugin. Load the dependencies, define the locale, and set the hooks
+	 * for the admin area and the public-facing side of the site.
 	 *
 	 * @since    1.0.0
 	 */
@@ -76,12 +73,16 @@ class XA10up_Primary_Category {
 		} else {
 			$this->version = '1.0.0';
 		}
-		$this->plugin_name = 'plugin-name';
+		$this->plugin_name = 'xa10up-primary-category';
 
 		$this->load_dependencies();
 		$this->set_locale();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
+
+		add_action( 'init', 'xa10up_post_type_review' );
+		add_action( 'init', 'xa10up_register_taxonomy_genre' );
+		add_action( 'init', 'xa10up_register_taxonomy_studio' );
 
 	}
 
@@ -91,11 +92,14 @@ class XA10up_Primary_Category {
 	 * Include the following files that make up the plugin:
 	 *
 	 * - XA10up_Primary_Category_Loader. Orchestrates the hooks of the plugin.
-	 * - XA10up_Primary_Category_i18n. Defines internationalization functionality.
+	 * - XA10up_Primary_Category_i18n. Defines internationalization
+	 * functionality.
 	 * - XA10up_Primary_Category_Admin. Defines all hooks for the admin area.
-	 * - XA10up_Primary_Category_Public. Defines all hooks for the public side of the site.
+	 * - XA10up_Primary_Category_Public. Defines all hooks for the public side
+	 * of the site.
 	 *
-	 * Create an instance of the loader which will be used to register the hooks
+	 * Create an instance of the loader which will be used to register the
+	 * hooks
 	 * with WordPress.
 	 *
 	 * @since    1.0.0
@@ -104,27 +108,48 @@ class XA10up_Primary_Category {
 	private function load_dependencies() {
 
 		/**
+		 * Post type for reviews
+		 */
+		require_once plugin_dir_path( __FILE__ ) . 'post-type-review.php';
+
+		/**
+		 * Taxonomy for genre
+		 */
+		require_once plugin_dir_path( __FILE__ ) . 'taxonomy-genre.php';
+
+		/**
+		 * Taxonomy for studio
+		 */
+		require_once plugin_dir_path( __FILE__ ) . 'taxonomy-studio.php';
+
+		/**
+		 * The class responsible for the plugin settings page.
+		 */
+		require_once plugin_dir_path( __FILE__ ) . 'class-xa10up-primary-category-settings.php';
+
+		/**
 		 * The class responsible for orchestrating the actions and filters of the
 		 * core plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-plugin-name-loader.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-xa10up-primary-category-loader.php';
 
 		/**
 		 * The class responsible for defining internationalization functionality
 		 * of the plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-plugin-name-i18n.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-xa10up-primary-category-i18n.php';
 
 		/**
-		 * The class responsible for defining all actions that occur in the admin area.
+		 * The class responsible for defining all actions that occur in the
+		 * admin area.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-plugin-name-admin.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-xa10up-primary-category-admin.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-plugin-name-public.php';
+		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-xa10up-primary-category-public.php';
 
 		$this->loader = new XA10up_Primary_Category_Loader();
 
@@ -133,8 +158,8 @@ class XA10up_Primary_Category {
 	/**
 	 * Define the locale for this plugin for internationalization.
 	 *
-	 * Uses the XA10up_Primary_Category_i18n class in order to set the domain and to register the hook
-	 * with WordPress.
+	 * Uses the XA10up_Primary_Category_i18n class in order to set the domain
+	 * and to register the hook with WordPress.
 	 *
 	 * @since    1.0.0
 	 * @access   private
@@ -161,13 +186,11 @@ class XA10up_Primary_Category {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
-		$this->loader->add_action( 'admin_init', $plugin_admin, array( 'XA10up_Primary_Category_Settings', 'init' ) );
-		$this->loader->add_action( 'admin_init', $plugin_admin, array( 'XA10up_Primary_Category_Settings', 'add_settings_menu' ) );
-		$this->loader->add_action( 'init', $plugin_admin, 'xa10up_post_type_review' );
-		$this->loader->add_action( 'init', $plugin_admin, 'xa10up_register_taxonomy_genre' );
-		$this->loader->add_action( 'init', $plugin_admin, 'xa10up_register_taxonomy_studio' );
 
+		$plugin_settings = new XA10up_Primary_Category_Settings();
 
+		$this->loader->add_action( 'admin_init', $plugin_settings, 'init' );
+		$this->loader->add_action( 'admin_menu', $plugin_settings, 'add_settings_menu' );
 	}
 
 	/**
@@ -219,7 +242,8 @@ class XA10up_Primary_Category {
 	/**
 	 * The reference to the class that orchestrates the hooks with the plugin.
 	 *
-	 * @return    XA10up_Primary_Category_Loader    Orchestrates the hooks of the plugin.
+	 * @return    XA10up_Primary_Category_Loader    Orchestrates the hooks of
+	 *                                              the plugin.
 	 * @since     1.0.0
 	 */
 	public function get_loader() {
