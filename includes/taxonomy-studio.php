@@ -25,5 +25,5 @@ function xa10up_register_taxonomy_studio() {
 		'query_var'         => true,
 		'rewrite'           => array( 'slug' => 'studio' ),
 	);
-	register_taxonomy( 'studio', array( 'review' ), $args );
+	register_taxonomy( 'studio', array( 'review', 'page' ), $args );
 }

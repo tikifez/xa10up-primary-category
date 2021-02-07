@@ -123,6 +123,12 @@ class XA10up_Primary_Category {
 		require_once plugin_dir_path( __FILE__ ) . 'taxonomy-studio.php';
 
 		/**
+		 * The class responsible for adding taxonomies to search results
+		 */
+		require_once plugin_dir_path( __FILE__ ) . 'class-xa10up-primary-category-search.php';
+
+
+		/**
 		 * The class responsible for the plugin settings page.
 		 */
 		require_once plugin_dir_path( __FILE__ ) . 'class-xa10up-primary-category-settings.php';
@@ -223,10 +229,16 @@ class XA10up_Primary_Category {
 	 */
 	private function define_public_hooks() {
 
+		// Add assets.
 		$plugin_public = new XA10up_Primary_Category_Public( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
+
+		// Add search results.
+		$plugin_search = new XA10up_Primary_Category_Search();
+
+		$this->loader->add_action( 'init', $plugin_search, 'add_taxonomies' );
 
 	}
 
