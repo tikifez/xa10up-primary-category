@@ -2,11 +2,7 @@
 
 Contributors: Xristopher Anderton
 
-Tags: categories, search, taxonomies 
-
-Requires at least: 3.0.1
-
-Tested up to: 3.4 Stable tag: 4.3 License: GPLv2 or later License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tags: categories, search, taxonomies
 
 An example plugin for assigning a primary category to post types and including those in search results.
 
